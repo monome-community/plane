@@ -1,0 +1,210 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red29\green29\blue29;}
+\margl1440\margr1440\vieww8640\viewh17420\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\b\fs24 \cf0 plane m | vi | cv\
+
+\b0 version 1.0 beta 4\
+06.28.11\
+stretta.com
+\b \
+\
+
+\b0 plane m | vi | cv is a monophonic diatonic step sequencer. Scale degrees, not notes are presented on the monome grid, which are then passed through a diatonic transposition mechanism which can be altered and transposed in real time. If you're looking for a chromatic or polyphonic step sequencer, please see plane p.\
+\
+
+\b Requirements
+\b0 \
+monome grid (any size)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i \cf0 \
+warning: plane relies exclusively on led/col messages to light the grid. monome emulators (arduinome, launchpad) may not work, or, at best, produce extremely sluggish scrolling response due to how the monome firmware is optimized to deal with this message. 
+\i0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 Optional (but recommended)
+\b0 \
+monome arc\
+additional monome grid (but grid a must be a 128 or 256)\
+modular synthesizer\
+\
+
+\b Installation
+\b0 \
+move\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f1\fs18 \cf0 sigmund~.mxo\
+sigmund~.maxhelp
+\f0\fs24 \
+to\
+\pard\pardeftab720\sl280\sa160\ql\qnatural
+
+\f1\fs18 \cf2 max 5/cycling '74/max-externals
+\f0\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 \
+
+\b Setup
+\b0 \
+open the _plane file\
+\
+in the serialosc tab, select your monome grid from the pull down menu and click connect. If you have two monome devices, including one with 16 steps, you may select a second monome grid from the grid b menu. Do the same for your arc. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i \cf0 note: serialosc will always return the latest grid connected in all three device areas. Don't worry. This is normal. The communication is still unique. \
+\
+note: if you want to use two monome grids, grid a assumes a monome with 16 steps. If you use an 8 step monome in the grid a slot there will be an 8-step gap between grid a and grid b. It is perfectly ok to use plane with an 8-step monome, but not two 8-step monomes. If you want to use two grids, grid a must be 16 steps. grid b can be 8 steps.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i0 \cf0 Click the MIDI tab and enable the output device. You should hear a sequence play. Congratulations. If you don't hear anything, check your clock/pulse source and MIDI output destination.\
+\
+
+\b monome grid
+\b0 \
+The top row is step enable/disable.\
+\
+The second row is the playback ruler.  Press a button in this row to jump loop playback from that point. A chorded two finger press will change loop length from first press to second press.\
+\
+remaining buttons\
+vertical buttons = step\
+horizontal buttons = scale degree\
+\
+use the arc (or mouse under the x/y positions under the data tab) to navigate around the grid. You'll notice the first and second row always display step enable/disable and the ruler, everything else moves 'underneath'\
+\
+
+\b Sequence Navigation
+\b0 \
+If you're using an arc, the first encoder scrolls x and the second encoder scrolls y.  Alternately, you can use the mouse to scroll x & y under the data & out tab. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i \cf0 note: the MIDI note next to y tells you the first row under the ruler bar
+\i0 \
+\
+Also, the 
+\f1 9 0 - =
+\f0  keys on your keyboard will step through scrolling. These keys can be mapped to a controller of your choice like a powermate.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 Pulse and ync
+\b0 \
+By default, plane uses open transport. This enables things like LFOs and encoder recording to stay in sync with the sequence. \
+\
+Sync options can be found under the pulse tab. Stat and stop the sequence with the large blue transport button. Tempo can be changed with the orange bpm setting. \
+\
+You can select 1/32 1/16 or 1/8 note pulses, as well as adjustable swing for fonky grooves.\
+\
+Two other pulse generators are provided, but you lose LFO and enc recorder sync. \
+\
+If you wish to drive plane from an analog sequencer, LFO, or other analog pulse source, take the audio output of your pulse generator and plug it into an input on your audio interface, then switch to 'analog' under the pulse tab. Select which audio input the pulse is plugged in to. You should see the level meter light up indicating received signal. Then set the pulse threshold to achieve consistent pulses. \
+\
+If you wish to sync plane to a MIDI beat clock source, the original stretta legacy sync (from polygome) is also provided. Set source to 'beat clock' and select which MIDI device is the beat clock source. Cool? Cool.\
+\
+
+\b Chord Scale
+\b0 \
+The current chord scale is shown under the chord scale tab in the top left hand corner of the window. This can be changed in real time. A MIDI controller can change the key value if desired. To do so, click on the MIDI tab, select a MIDI input device and set the menu to 'transpose'\
+\
+plane can follow a looping 'score' of changes if the 'score following' button is lit.   Each 'step' in a score is one 1/8th note. You can enter score changes using the score editor, but I find that once you understand the score format, it may be easier to edit the text file directly, or use a combination of the score editor and text editing to achieve the results you're looking for.\
+\
+The score format\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f1\fs18 \cf0 0, 60 4;\
+8, 60 4;\
+16, 60 4;\
+24, 60 4;\
+32, 65 4;\
+40, 65 4;\
+48, 60 4;\
+56, 60 4;\
+64, 67 4;\
+72, 67 4;\
+80, 60 4;\
+88, 60 4;\
+length, 103;
+\f0\fs24 \
+\
+The first number is the index (which eighth note the change occurs on). The second number is the key (in MIDI note format). The third number is the mode.\
+\
+Modes\
+0 - Ionian (major)\
+1 - Dorian\
+2 - Phrygian\
+3 - Lydian\
+4 - Mixolydian\
+5 - Aeolian (natural minor)\
+6 - Locrian\
+\
+So, at index 0, we see the key is 60 (C3) and the mode is Mixolydian (which would be used for dominant 7 chords) The next index number is 8 which would be the next measure (assuming 4/4 time). (eight eighth notes per measure, get it?)\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 Control voltages
+\b0 \
+Most of the control voltage outputs can be found under the outputs tab. There are three pitch outputs and two trigger outputs which will allow you to calibrate three oscillators. You could mult the trigger output in the analog realm, the additional trigger output is a convenience. \
+\
+To calibrate an oscillator, plug the sine wave output of your oscillator into an input on your audio interface and an output from your audio interface into the 1v/oct input on your oscillator. Both connections must be made.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i \cf0 note: the pitch output must be enabled (the orange check box lit) before calibration can begin. If plane can't send control voltages, it can't calibrate.\
+\
+note: make sure you only enable appropriately routed outputs. If you enable an output that is used for audio, you can cause distortion or undesired/unpredictable results.
+\i0 \
+\
+Make sure you've selected the proper output for the oscillator in the outputs tab. Go to the calibration tab and select the input from your oscillator. The level meter should light to indicate signal.\
+\
+
+\i note: make sure you know the proper output mappings of your audio interface. The numberings may not make sense. EG: analog 1 might be output 3. Also check your output mappings in the configure dsp menu,
+\i0 \
+\
+Now you can calibrate. You should see a angled line appear of sample points. If you see a straight vertical line, something is wrong. \
+\
+
+\i note: Use shift-click to remove any rogue sample points. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i0 \cf0 If the calibrated oscillator output is transposed, Use the offset value to correct. Offset is also useful for setting intervals and octaves of oscillators easily.\
+\
+
+\b Saw Cloud
+\b0 \
+Also under the outputs menu is the saw cloud. Select which output on your audio interface you want the saw cloud to appear at. Saw Cloud fatness can be set in fattingtons which is the universal scientifically-accepted method of measuring fatness. \
+\
+
+\b Encoder Recorder
+\b0 \
+If you have an arc4, you can use encoders 3 & 4 to function as a looping CV source. Make sure 'loop' is on, and the encoder output is enabled (with appropriate output destination, of course. To begin recording, tap the encoder button. plane will wait until the loop phase comes around (rec button blinks) and then start record (record button solid and playback button blinking) Playback begins with playback button is solid orange. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i \cf0 note: recorded is controlled via the encoder button. Don't try to click record with the mouse, it won't work.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\i0\b \cf0 LFO
+\b0 \
+Two LFOs are provided under the LFO tab. Enable button, output destination, shape, rate, etc\'85 blah blah blah. You know what this stuff is. Syncs to global transport. \
+\
+
+\b MIDI Sequence Data Entry
+\b0 \
+Under the MIDI tab, the input section can route MIDI data to 'program' This enables you to enter in sequence data within the currently loop area from a MIDI controller. Diatonic note data is entered with the white keys on a MIDI keyboard, relative to C ionian (C major). \
+\
+
+\b data & out tab
+\b0 \
+Take the output of your modular patch and plug it into an input of your audio interface. Then, select which input the output of the modular is coming in to from the output menu. There is a volume slider and level meter so you can see activity. (it is difficult managing all these input and outputs, yo. It is a lot to keep track of) \
+\
+If you wish to save and recall your sequence data, that is what the read/write buttons here are for.}
