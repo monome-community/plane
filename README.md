@@ -4,7 +4,7 @@ scrolling monophonic diatonic step sequencer with MIDI and CV outputs
 
 created by: stretta
 
-![](app:plane2.jpg)
+![](plane2.jpg)
 
 plane m | vi | cv is a monophonic diatonic step sequencer. Scale degrees, not notes are presented on the monome grid, which are then passed through a diatonic transposition mechanism which can be altered and transposed in real time. If you're looking for a chromatic or polyphonic step sequencer, please see plane p.
 
